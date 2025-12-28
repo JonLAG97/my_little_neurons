@@ -156,7 +156,7 @@ positions.forEach((pos, i) => {
 
 camera.position.x = 50;
 camera.position.y = 30;
-camera.position.z = 190;
+camera.position.z = 240;
 camera.lookAt(new THREE.Vector3(60, 20, 25));
 
 // Render loop

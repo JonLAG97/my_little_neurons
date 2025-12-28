@@ -176,20 +176,7 @@ class Brain{
     }
 
     get_output(){
-        for(let i=0; i<this.output.length; i++){
-            for(let j=0; j<this.output[i].inputs.length; j++){
-                const conn=this.output[i].inputs[j];
-                this.output[i].I += conn.pre_neuron.low_pass * conn.W; //add spike low pass
-            }
-        }
-
-        //sigmoid of low pass spikes for movement
-        const scale=0.5;
-        const scale_sig=1.8;
-        vy += scale*sigmoid(this.output[0].I*scale_sig);
-        vy += -scale*sigmoid(this.output[2].I*scale_sig);
-        vx += scale*sigmoid(this.output[3].I*scale_sig);
-        vx += -scale*sigmoid(this.output[1].I*scale_sig);        
+        //      
     }
 
     get_firing(){
