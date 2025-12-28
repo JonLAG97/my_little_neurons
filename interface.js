@@ -100,17 +100,22 @@ canvas.addEventListener("mousemove", e => joystick.dragging && moveStick(e.offse
 canvas.addEventListener("mouseup", endDrag);
 
 canvas.addEventListener("touchstart", e => {
+  e.preventDefault();
   const t = e.touches[0];
   const rect = canvas.getBoundingClientRect();
   startDrag(t.clientX - rect.left, t.clientY - rect.top);
 });
 canvas.addEventListener("touchmove", e => {
+  e.preventDefault();
   if (!joystick.dragging) return;
   const t = e.touches[0];
   const rect = canvas.getBoundingClientRect();
   moveStick(t.clientX - rect.left, t.clientY - rect.top);
 });
-canvas.addEventListener("touchend", endDrag);
+canvas.addEventListener("touchend", e => {
+  e.preventDefault();
+  endDrag();
+}, { passive: false });
 window.addEventListener("mouseup", endDrag);
 
 
