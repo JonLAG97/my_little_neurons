@@ -104,14 +104,14 @@ canvas.addEventListener("touchstart", e => {
   const t = e.touches[0];
   const rect = canvas.getBoundingClientRect();
   startDrag(t.clientX - rect.left, t.clientY - rect.top);
-});
+}, { passive: false });
 canvas.addEventListener("touchmove", e => {
   e.preventDefault();
   if (!joystick.dragging) return;
   const t = e.touches[0];
   const rect = canvas.getBoundingClientRect();
   moveStick(t.clientX - rect.left, t.clientY - rect.top);
-});
+}, { passive: false });
 canvas.addEventListener("touchend", e => {
   e.preventDefault();
   endDrag();
@@ -127,7 +127,7 @@ import * as THREE from './js/three/build/three.module.js';
 var firing = [];//which neurons are firing
 
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 0);
+const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
 const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById("3Dcanvas") });
 renderer.setSize(600, 600);
 
@@ -137,12 +137,12 @@ var positions = [];
 for(let i=0; i<4; i++){
     positions.push([i*20, -80, 45 ]);
 }
-let f=10;//grid
+let f=5;//grid
 for(let j=0; j<50; j++){
     for(let k=0; k<1; k++){
         for(let i=50; i>0; i--){
-            positions.push([(j/1.5)*f-90, (i/2.25)*f-100, k*f]);
-        }
+            positions.push([j*f-90, i*f-100, k*f]);
+        } 
     }
 }
 //positions = positions.concat([[5,60,45], [15,60,45], [25,60,45], [35,60,45]]);//output
@@ -159,10 +159,10 @@ positions.forEach((pos, i) => {
     neurons.push(mesh);
   });
 
-camera.position.x = 50;
+camera.position.x = 40;
 camera.position.y = 30;
-camera.position.z = 240;
-camera.lookAt(new THREE.Vector3(60, 20, 25));
+camera.position.z = 200;
+camera.lookAt(new THREE.Vector3(40, 20, 25));
 
 // Render loop
 function animate() {

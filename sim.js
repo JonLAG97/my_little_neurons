@@ -121,7 +121,7 @@ class Brain{
                 let pos2 = this.grid[j].id;//target
                 let distx = Math.abs(pos1[0]-pos2[0]);
                 let disty = Math.abs(pos1[1]-pos2[1]);
-                //calculate looped distance
+                //calculate looped distance to set a torus topology
                 if(distx > Math.floor(length/2)){ distx = length - distx }                
                 if(disty > Math.floor(length/2)){ disty = length - disty }
                 let dist = Math.sqrt( distx**2 + disty**2 );
