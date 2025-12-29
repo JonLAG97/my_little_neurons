@@ -182,7 +182,7 @@ class Brain{
     get_firing(){
         let firing = [];
         for(let i=0; i<this.n; i++){
-            if(this.neurons[i].last_spike >= timestep-2){//is neuron spiking?
+            if(this.neurons[i].last_spike >= timestep-4){//is neuron spiking?
                 firing.push(true);
             }else{
                 firing.push(false);
